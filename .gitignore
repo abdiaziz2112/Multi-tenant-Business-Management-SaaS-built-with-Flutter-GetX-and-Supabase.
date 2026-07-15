@@ -1,9 +1,24 @@
+# Flutter / Dart
 .dart_tool/
 build/
 .flutter-plugins*
-*.iml
-.idea/
+.flutter-plugins-dependencies
+.packages
 
-# Environment files with real values are NEVER committed — anywhere in the tree.
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Kotlin / Android Studio
+**/.kotlin/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Environment files (never commit these)
 **/env/dev.json
 **/env/prod.json
