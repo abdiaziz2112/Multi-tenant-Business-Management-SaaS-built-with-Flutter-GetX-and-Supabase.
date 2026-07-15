@@ -1,0 +1,9 @@
+.dart_tool/
+build/
+.flutter-plugins*
+*.iml
+.idea/
+
+# Environment files with real values are NEVER committed — anywhere in the tree.
+**/env/dev.json
+**/env/prod.json

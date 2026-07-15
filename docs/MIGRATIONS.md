@@ -35,7 +35,7 @@ The four system roles and their permission wiring — the approved Permission Ma
 Three plans (Starter/Professional/Enterprise) and `maintenance_mode` (off). Per the directive: plans are data only; no gateway, no billing code.
 
 ## §00011_security_tests.sql
-Assertions that make the deployment *fail* if any protection is missing: RLS on all tables; payments/audit_logs/stock_movements append-only; tenant wall present; helper functions exist; seeds complete. A red test here is the system working — the database refusing to go live insecure. Rerun anytime with `supabase db reset`.
+Assertions that make the deployment *fail* if any protection is missing. Test 1 validates **application tables only**: it excludes extension-owned tables (discovered live via the `pg_depend` catalog, `deptype='e'`) because e.g. PostGIS puts its read-only `spatial_ref_sys` catalog in `public`, where RLS is neither possible (extension-owned) nor meaningful (no tenant data). The exclusion cannot be abused — a table we create can never appear extension-owned. Verified against a live Postgres+PostGIS instance: flags unprotected app tables, ignores extension tables. The remaining tests check: RLS on all tables; payments/audit_logs/stock_movements append-only; tenant wall present; helper functions exist; seeds complete. A red test here is the system working — the database refusing to go live insecure. Rerun anytime with `supabase db reset`.
 
 ## How to apply (preview — full walkthrough in SUPABASE_SETUP.md)
 ```bash

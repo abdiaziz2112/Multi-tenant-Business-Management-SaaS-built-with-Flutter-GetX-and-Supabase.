@@ -1,0 +1,12 @@
+# Melos manages the monorepo: one command bootstraps every app and package.
+name: ganacsi
+packages:
+  - apps/**
+  - packages/**
+command:
+  bootstrap:
+    runPubGetInParallel: true
+scripts:
+  analyze:
+    run: melos exec -- flutter analyze
+    description: Run static analysis in every package.

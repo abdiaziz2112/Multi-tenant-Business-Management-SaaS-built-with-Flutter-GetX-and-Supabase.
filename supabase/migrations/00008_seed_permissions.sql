@@ -15,7 +15,7 @@ insert into permissions (code, module, description) values
   ('customers.delete',       'crm',      'Soft-delete customers'),
   ('customers.credit_limit', 'crm',      'Set or change customer credit limits'),
   ('employees.manage',       'hr',       'Invite/edit/deactivate employees, assign roles'),
-  ('attendance.view_all',    'hr',       'View and correct attendance in scope'),
+  ('attenAdance.view_all',    'hr',       'View and correct attendance in scope'),
   ('expenses.create',        'finance',  'Record expenses'),
   ('reports.branch',         'reports',  'View branch-level reports'),
   ('reports.business',       'reports',  'View business-wide reports'),

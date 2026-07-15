@@ -1,0 +1,11 @@
+name: core
+description: Shared foundation - env config, Supabase client, errors, validators, session.
+version: 0.1.0
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: ">=3.22.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  supabase_flutter: ^2.8.0
+  get: ^4.6.6

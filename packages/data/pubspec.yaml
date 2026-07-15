@@ -1,0 +1,13 @@
+name: data
+description: Repository IMPLEMENTATIONS - the only layer that queries Supabase.
+version: 0.1.0
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: ">=3.22.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+    path: ../core
+  domain:
+    path: ../domain

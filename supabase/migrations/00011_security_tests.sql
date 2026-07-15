@@ -6,18 +6,32 @@
 -- Docs: docs/MIGRATIONS.md §00011
 -- ============================================================================
 
--- TEST 1: RLS must be enabled on every application table.
+-- TEST 1: RLS must be enabled on every APPLICATION table in public.
+-- Tables owned by extensions (e.g. PostGIS's spatial_ref_sys — a read-only
+-- coordinate-system catalog we cannot even ALTER on Supabase) are excluded by
+-- asking Postgres itself, via the pg_depend catalog, "does this table belong
+-- to an extension?" (deptype 'e' = extension membership). This is future-proof
+-- for any extension, and cannot be abused: a table WE create can never appear
+-- extension-owned, so no application table ever escapes this check.
 do $$
 declare bad text;
 begin
-  select string_agg(tablename, ', ') into bad
-    from pg_tables
-   where schemaname = 'public'
-     and rowsecurity = false;
+  select string_agg(c.relname, ', ') into bad
+    from pg_class c
+    join pg_namespace n on n.oid = c.relnamespace
+   where n.nspname = 'public'
+     and c.relkind = 'r'                 -- ordinary tables (views have no RLS)
+     and not c.relrowsecurity
+     and not exists (
+       select 1 from pg_depend d
+        where d.classid    = 'pg_class'::regclass
+          and d.objid      = c.oid
+          and d.refclassid = 'pg_extension'::regclass
+          and d.deptype    = 'e');
   if bad is not null then
     raise exception 'SECURITY TEST FAILED: RLS disabled on: %', bad;
   end if;
-  raise notice 'TEST 1 PASSED: RLS enabled on all public tables';
+  raise notice 'TEST 1 PASSED: RLS enabled on all application tables';
 end $$;
 
 -- TEST 2: payments must be immutable — no UPDATE or DELETE policy may exist.

@@ -1,0 +1,6 @@
+# Root pubspec exists only so Melos can be a dev dependency of the workspace.
+name: ganacsi_workspace
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+dev_dependencies:
+  melos: ^6.0.0
