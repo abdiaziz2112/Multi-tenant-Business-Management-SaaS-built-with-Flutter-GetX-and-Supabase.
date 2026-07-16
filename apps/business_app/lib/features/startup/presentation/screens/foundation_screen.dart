@@ -48,10 +48,10 @@ class FoundationScreen extends GetView<FoundationController> {
                 PingStatus.ok => Row(children: [
                     const Icon(Icons.check_circle, color: AppColors.success),
                     const SizedBox(width: 8),
-                    Text('foundation.supabase_ok'.tr),
+                    Text('foundation.server_ok'.tr),
                   ]),
                 PingStatus.fail => ErrorView(
-                    messageKey: 'foundation.supabase_fail',
+                    messageKey: 'foundation.server_fail',
                     onRetry: controller.retry,
                   ),
               }),

@@ -18,7 +18,7 @@ class PortalApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Ganacsi Portal',
+      title: 'Hanti ERP Portal',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,

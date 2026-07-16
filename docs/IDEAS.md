@@ -8,3 +8,5 @@ Every good idea that is not in the approved MVP lands here instead of derailing 
 - Offline-first POS with sync queue
 - Loyalty points; purchase orders; payroll from attendance; accounting module
 - Web dashboard for business owners; public API; AI insights
+- (Vision doc 2026-07) Full ERP module suite: Accounting, Payroll, HR, Purchasing, Manufacturing, Projects, Assets, Analytics, AI Assistant, public API — long-term roadmap, NOT MVP
+- (Vision doc 2026-07) Departments tier between Branches and Roles — defer until a customer needs it; clean additive migration when adopted

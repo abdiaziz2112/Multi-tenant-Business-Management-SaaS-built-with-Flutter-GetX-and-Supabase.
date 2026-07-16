@@ -1,13 +1,8 @@
 /// Purpose: Entry point of the Business App.
-/// Responsibilities:
-/// - Initialize Flutter bindings.
-/// - Initialize local storage.
-/// - Initialize Supabase.
-/// - Register global GetX services.
-/// - Launch the application.
-///
-/// Usage:
-/// flutter run --dart-define-from-file=env/dev.json
+/// Responsibilities: Initialize storage + Supabase + global services, in order,
+/// BEFORE the first frame; then hand off to App.
+/// Dependencies: core, localization, ui_kit, get_storage.
+/// Usage: flutter run --dart-define-from-file=env/dev.json
 library;
 
 import 'package:core/core.dart';
@@ -20,19 +15,23 @@ import 'package:ui_kit/ui_kit.dart';
 import 'app/app.dart';
 
 Future<void> main() async {
+  // Required whenever main() awaits before runApp(): plugins need the engine.
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize local storage.
-  await GetStorage.init();
+  try {
+    await GetStorage.init();       // 1. local key-value store (theme, locale)
+    await SupabaseService.init();  // 2. backend client (validates env first)
 
-  // Initialize Supabase (validates environment variables first).
-  await SupabaseService.init();
+    // 3. App-lifetime services (permanent: true = never disposed).
+    Get.put(ThemeService(), permanent: true);
+    Get.put(LocaleService(), permanent: true);
+    Get.put(SessionService(), permanent: true);
 
-  // Register global application services.
-  Get.put(ThemeService(), permanent: true);
-  Get.put(LocaleService(), permanent: true);
-  Get.put(SessionService(), permanent: true);
-
-  // Launch the application.
-  runApp(const App());
+    runApp(const App());
+  } catch (e, st) {
+    // Developer gets the truth in the console; the user gets a friendly,
+    // brand-consistent screen with no technical details (UX rule, CR-5).
+    debugPrint('BOOTSTRAP FAILURE: $e\n$st');
+    runApp(const BootstrapErrorApp());
+  }
 }

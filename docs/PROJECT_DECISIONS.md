@@ -18,3 +18,16 @@ Every significant decision, its date, and its reason. When future-you asks "why 
 | D13 | 2026-07 | Subscriptions: schema + mock trial trigger only; no payment gateway in MVP | Directive |
 | D14 | 2026-07 | Views use `security_invoker = true` | Prevents cross-tenant leaks through views |
 | D15 | 2026-07 | Thermal receipt printing (ESC/POS) included in POS milestone | Market expectation; painful to retrofit |
+| D16 | 2026-07 | One cloud project (ganacsi-dev) until M7; production project created before pilot | Solo-dev overhead; no users yet |
+| D17 | 2026-07 | Migrations validated on clean PostgreSQL 16 + 10-assertion smoke test before first cloud push | Never trust unapplied SQL |
+| D16 | 2026-07 | Environment via --dart-define-from-file (compile-time), env/*.json gitignored | Can't forget config in release builds; no runtime file loading |
+| D17 | 2026-07 | GetX Translations for i18n (CR-3, pending); flutter_localizations for RTL | Idiomatic with GetX-only rule; no codegen for a beginner |
+| D18 | 2026-07 | Portal is English-only and desktop-plain | One user (Platform Owner); clarity over beauty |
+| D19 | 2026-07 | Foundation acceptance = live Supabase read of subscription_plans via RLS | Proves env, client, network AND security wiring in one check |
+| D20 | 2026-07 | Security Test 1 excludes extension-owned tables via pg_depend (not a name list) | PostGIS's spatial_ref_sys lives in public and cannot be RLS'd; catalog-based exclusion is future-proof and un-abusable |
+| D21 | 2026-07 | Migrate to Supabase publishable key (`publishableKey:` param, `SUPABASE_PUBLISHABLE_KEY` env var) | anonKey deprecated; legacy keys sunset end of 2026; one call site made it a 5-minute migration |
+| D22 | 2026-07 | All internal packages declare `publish_to: "none"` | Pub treats versioned packages as publishable and forbids path deps; explicit intent fixes it project-wide |
+| D23 | 2026-07 | File headers end with `library;` (anchored library doc comments) | Satisfies dangling_library_doc_comments while keeping mandatory documentation |
+| D24 | 2026-07 | Brand = Hanti ERP; internal names (packages, repo) unchanged per directive | Rebrands are string-level, not identifier-level — cheap now, cheap later |
+| D25 | 2026-07 | Somali via custom So*Localizations delegates (key labels translated, long tail falls back to English) | Flutter ships no Somali Material strings; delegates make Locale('so') legal |
+| D26 | 2026-07 | Startup failures show BootstrapErrorApp (friendly, trilingual); real error to console only | Users never see config/stack details; developers keep full truth |

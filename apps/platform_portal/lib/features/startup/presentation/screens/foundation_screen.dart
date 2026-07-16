@@ -16,16 +16,16 @@ class FoundationScreen extends GetView<FoundationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Ganacsi — Platform Owner Portal')),
+      appBar: AppBar(title: const Text('Hanti ERP — Platform Owner Portal')),
       body: Center(
         child: Obx(() => switch (controller.ping.value) {
               PingStatus.loading => const LoadingView(),
               PingStatus.fail => ErrorView(
-                  messageKey: 'foundation.supabase_fail',
+                  messageKey: 'foundation.server_fail',
                   onRetry: controller.check,
                 ),
               PingStatus.ok => Text(
-                  'Foundation OK. Plans in database: '
+                  'Foundation OK. Plans found: '
                   '${controller.planNames.join(' · ')}',
                 ),
             }),

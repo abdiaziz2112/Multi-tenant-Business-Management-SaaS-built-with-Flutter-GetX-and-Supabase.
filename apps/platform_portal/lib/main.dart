@@ -15,9 +15,14 @@ import 'app/app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await GetStorage.init();
-  await SupabaseService.init();
-  Get.put(ThemeService(), permanent: true);
-  Get.put(SessionService(), permanent: true);
-  runApp(const PortalApp());
+  try {
+    await GetStorage.init();
+    await SupabaseService.init();
+    Get.put(ThemeService(), permanent: true);
+    Get.put(SessionService(), permanent: true);
+    runApp(const PortalApp());
+  } catch (e, st) {
+    debugPrint('BOOTSTRAP FAILURE: $e\n$st');
+    runApp(const BootstrapErrorApp());
+  }
 }

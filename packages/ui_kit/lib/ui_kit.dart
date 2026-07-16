@@ -9,3 +9,4 @@ export 'src/theme/theme_service.dart';
 export 'src/widgets/app_button.dart';
 export 'src/widgets/app_text_field.dart';
 export 'src/widgets/status_views.dart';
+export 'src/widgets/bootstrap_error_app.dart';

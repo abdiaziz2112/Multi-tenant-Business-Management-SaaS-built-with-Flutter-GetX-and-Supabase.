@@ -2,6 +2,8 @@
 /// Responsibilities: Provide GetX Translations maps; NO hardcoded strings in UI.
 /// Dependencies: get.
 /// Usage: Text('common.save'.tr)  — add every new key to ALL THREE maps.
+library;
+
 import 'package:get/get.dart';
 
 class AppTranslations extends Translations {
@@ -14,7 +16,7 @@ class AppTranslations extends Translations {
 }
 
 const _en = {
-  'app.name': 'Ganacsi',
+  'app.name': 'Hanti ERP',
   'common.save': 'Save',
   'common.cancel': 'Cancel',
   'common.search': 'Search',
@@ -39,13 +41,13 @@ const _en = {
   'validation.password_digit': 'Add a number',
   'validation.password_special': 'Add a special character',
   'foundation.title': 'Foundation check',
-  'foundation.subtitle': 'Theme, language and Supabase are wired correctly.',
-  'foundation.supabase_ok': 'Supabase connected',
-  'foundation.supabase_fail': 'Supabase not reachable',
+  'foundation.subtitle': 'Theme, language and server connection are working.',
+  'foundation.server_ok': 'Connected to the server',
+  'foundation.server_fail': 'Could not reach the server',
 };
 
 const _so = {
-  'app.name': 'Ganacsi',
+  'app.name': 'Hanti ERP',
   'common.save': 'Kaydi',
   'common.cancel': 'Ka noqo',
   'common.search': 'Raadi',
@@ -70,13 +72,13 @@ const _so = {
   'validation.password_digit': 'Ku dar lambar',
   'validation.password_special': 'Ku dar calaamad gaar ah',
   'foundation.title': 'Hubinta aasaaska',
-  'foundation.subtitle': 'Muuqaalka, luqadda iyo Supabase si sax ah ayay u shaqeynayaan.',
-  'foundation.supabase_ok': 'Supabase wuu xiran yahay',
-  'foundation.supabase_fail': 'Supabase lama gaari karo',
+  'foundation.subtitle': 'Muuqaalka, luqadda iyo xiriirka serverka way shaqeynayaan.',
+  'foundation.server_ok': 'Waxaa lala xiriiray serverka',
+  'foundation.server_fail': 'Serverka lama gaari karo',
 };
 
 const _ar = {
-  'app.name': 'غنكسي',
+  'app.name': 'Hanti ERP',
   'common.save': 'حفظ',
   'common.cancel': 'إلغاء',
   'common.search': 'بحث',
@@ -101,7 +103,7 @@ const _ar = {
   'validation.password_digit': 'أضف رقمًا',
   'validation.password_special': 'أضف رمزًا خاصًا',
   'foundation.title': 'فحص الأساس',
-  'foundation.subtitle': 'المظهر واللغة وSupabase تعمل بشكل صحيح.',
-  'foundation.supabase_ok': 'Supabase متصل',
-  'foundation.supabase_fail': 'تعذر الوصول إلى Supabase',
+  'foundation.subtitle': 'المظهر واللغة والاتصال بالخادم تعمل بشكل صحيح.',
+  'foundation.server_ok': 'تم الاتصال بالخادم',
+  'foundation.server_fail': 'تعذر الاتصال بالخادم',
 };

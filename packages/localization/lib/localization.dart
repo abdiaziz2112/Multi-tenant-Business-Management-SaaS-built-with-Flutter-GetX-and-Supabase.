@@ -6,3 +6,4 @@ library localization;
 
 export 'src/app_translations.dart';
 export 'src/locale_service.dart';
+export 'src/so_localizations.dart';

@@ -1,9 +1,7 @@
-/// Purpose: The root widget of the Business App.
-/// Responsibilities:
-/// - Configure GetX routing.
-/// - Configure themes.
-/// - Configure localization.
-/// - Launch the application's navigation tree.
+/// Purpose: The root widget — wires GetX routing, themes, and 3 languages together.
+/// Responsibilities: GetMaterialApp configuration ONLY (no business logic).
+/// Dependencies: get, ui_kit, localization, flutter_localizations.
+/// Usage: runApp(const App()) from main.dart.
 library;
 
 import 'package:flutter/material.dart';
@@ -21,33 +19,31 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Ganacsi',
+      title: 'Hanti ERP',
       debugShowCheckedModeBanner: false,
 
-      // Theme
+      // THEMES — light default, dark optional; user choice persisted.
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: ThemeService.to.mode,
 
-      // Localization
+      // LANGUAGES — 'key'.tr resolves against these maps; the Arabic locale
+      // flips the whole layout to RTL automatically (Directional widgets).
       translations: AppTranslations(),
       locale: LocaleService.to.current,
       fallbackLocale: const Locale('en'),
-
-      // Flutter currently provides Material/Cupertino localizations
-      // for English and Arabic. Somali translations are handled by GetX.
-      supportedLocales: const [
-        Locale('en'),
-        Locale('ar'),
-      ],
-
+      supportedLocales: const [Locale('en'), Locale('so'), Locale('ar')],
       localizationsDelegates: const [
+        // Somali first: custom delegates must come BEFORE the Global ones,
+        // because Flutter uses the first delegate that supports the locale.
+        SoMaterialLocalizations.delegate,
+        SoCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
 
-      // Routing
+      // ROUTING — every route declared in one place (app_pages.dart).
       initialRoute: AppRoutes.splash,
       getPages: AppPages.pages,
     );

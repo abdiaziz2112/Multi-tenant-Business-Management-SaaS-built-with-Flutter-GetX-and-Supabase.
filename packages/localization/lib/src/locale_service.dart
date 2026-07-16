@@ -14,6 +14,7 @@ class LocaleService extends GetxService {
 
   static const List<String> supported = [
     'en',
+    'so',
     'ar',
   ];
 
@@ -23,6 +24,11 @@ class LocaleService extends GetxService {
   /// Defaults to English.
   Locale get current {
     final code = _box.read<String>('locale') ?? 'en';
+
+    if (!supported.contains(code)) {
+      return const Locale('en');
+    }
+
     return Locale(code);
   }
 
@@ -30,10 +36,10 @@ class LocaleService extends GetxService {
 
   Future<void> change(String code) async {
     if (!supported.contains(code)) {
-      throw ArgumentError('Unsupported locale: $code');
+      return;
     }
 
     await _box.write('locale', code);
-    Get.updateLocale(Locale(code));
+    await Get.updateLocale(Locale(code));
   }
 }
