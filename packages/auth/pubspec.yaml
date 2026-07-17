@@ -1,0 +1,21 @@
+name: auth
+publish_to: "none"  # internal monorepo package - path deps allowed
+description: Shared authentication feature package - domain, data and application layers consumed by all three Hanti ERP apps.
+version: 0.1.0
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: ">=3.22.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+    path: ../core
+  supabase_flutter: ^2.8.0        # confined to data/ (infrastructure rule)
+  flutter_secure_storage: ^9.2.2  # PIN hash + device identity at rest
+  local_auth: ^2.3.0              # biometric prompt (fingerprint / Face ID)
+  device_info_plus: ^10.1.2       # human-readable device name/platform label
+  crypto: ^3.0.5                  # SHA-256 for PIN hashing
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0

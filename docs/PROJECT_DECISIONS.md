@@ -31,3 +31,17 @@ Every significant decision, its date, and its reason. When future-you asks "why 
 | D24 | 2026-07 | Brand = Hanti ERP; internal names (packages, repo) unchanged per directive | Rebrands are string-level, not identifier-level — cheap now, cheap later |
 | D25 | 2026-07 | Somali via custom So*Localizations delegates (key labels translated, long tail falls back to English) | Flutter ships no Somali Material strings; delegates make Locale('so') legal |
 | D26 | 2026-07 | Startup failures show BootstrapErrorApp (friendly, trilingual); real error to console only | Users never see config/stack details; developers keep full truth |
+| D27 | 2026-07 | SEC-1: current_business_id() approval-gated; owner_business_id() confined to one policy by test | Approval/suspension become DB-enforced kill-switches; containment is machine-checked |
+| D28 | 2026-07 | AUTH-007 on the EXISTING devices table + definer-only trust mutations | No duplicate tables; self-trust structurally impossible (B8) |
+| D29 | 2026-07 | Two-layer DB testing: structural tests inside migrations, behavioral RLS tests in local harness | Structural runs everywhere; behavioral needs role-switching migrations can't do |
+| D30 | 2026-07 | Trust expiry configurable via platform_settings + helper (default 90) | Existing config surface; portal-editable; no GUC/no new table |
+| D31 | 2026-07 | Password change revokes all devices EXCEPT current (FR-A18/SEC-14) | Kills stolen-trusted-device persistence; current device just proved control |
+| D32 | 2026-07 | OTP lifecycle owned by auth provider; Hanti adds UX cooldowns only | One source of truth for OTP state |
+| D33 | 2026-07 | audit_insert actor-bound; owner_business_id sanctioned in exactly 2 policies (machine-checked) | Forgery blocked; containment stays conscious |
+| D34 | 2026-07 | Phase B package plan: existing five packages retained; ONE new shared package `auth` (domain+data+services for all 3 apps); directive's package names mapped, not adopted | Their own rules: reuse packages, no redesign; auth shared so only UI differs per app |
+| D35 | 2026-07 | Device fingerprint = per-install random id in OS-encrypted secure storage (not hardware ids) | Privacy-safe, stable, reinstall=new device=OTP (correct behavior) |
+| D36 | 2026-07 | PIN stored only as salted SHA-256 in secure storage, constant-time verify; biometrics/PIN are LOCAL unlock over an authenticated session | Never store secrets; server session remains the credential |
+| D37 | 2026-07 | Phase B executes as gated sub-phases B1–B6; user's machine is the CI for analyze/test gates | Canonical dev rules outrank single-shot delivery; honest verification |
+| D34 | 2026-07 | Shared packages/auth feature package (own domain/data/application) consumed by all 3 apps | Only structure satisfying "never duplicate authentication" across three apps |
+| D35 | 2026-07 | Device fingerprint = install-scoped random id in secure storage (not hardware IDs) | Privacy-safe; reinstall=new device=OTP again is correct security posture |
+| D36 | 2026-07 | PIN stored as salted SHA-256 in secure storage, constant-time verify; app gate not account credential | Never store secrets in plaintext; timing-safe comparison |
