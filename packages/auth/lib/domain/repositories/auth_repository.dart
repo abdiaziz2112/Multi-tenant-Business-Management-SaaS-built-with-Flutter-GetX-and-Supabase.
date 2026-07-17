@@ -7,6 +7,7 @@ abstract interface class AuthRepository {
   Future<void> signIn({required String email, required String password});
   Future<void> sendEmailOtp(String email);
   Future<void> verifySignupOtp({required String email, required String code});
+  Future<void> resendSignupOtp(String email);
   Future<void> verifyLoginOtp({required String email, required String code});
   Future<void> sendPasswordResetOtp(String email);
   Future<void> verifyRecoveryOtp({required String email, required String code});

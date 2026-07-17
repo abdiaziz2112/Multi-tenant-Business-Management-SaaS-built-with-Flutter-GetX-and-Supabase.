@@ -17,6 +17,7 @@ export 'data/repositories/provider_auth_repository.dart';
 export 'data/repositories/provider_business_repository.dart';
 export 'data/repositories/provider_device_repository.dart';
 export 'application/auth_flow_resolver.dart';
+export 'application/auth_bootstrap.dart';
 export 'application/device_identity_service.dart';
 export 'application/pin_service.dart';
 export 'application/biometric_service.dart';

@@ -13,6 +13,7 @@ import 'package:localization/localization.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 import 'app/app.dart';
+import 'app/bindings/auth_binding.dart';
 
 Future<void> main() async {
   // Required whenever main() awaits before runApp(): plugins need the engine.
@@ -26,6 +27,7 @@ Future<void> main() async {
     Get.put(ThemeService(), permanent: true);
     Get.put(LocaleService(), permanent: true);
     Get.put(SessionService(), permanent: true);
+    AuthBinding().dependencies();
 
     runApp(const App());
   } catch (e, st) {

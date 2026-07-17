@@ -1,6 +1,8 @@
 /// Purpose: The color vocabulary of Ganacsi. Nothing hardcodes a hex outside this file.
 /// Responsibilities: Brand seed + semantic colors (success/warning/danger/credit).
 /// Dependencies: flutter. Usage: AppColors.seed, AppColors.success ...
+library;
+
 import 'package:flutter/material.dart';
 
 class AppColors {

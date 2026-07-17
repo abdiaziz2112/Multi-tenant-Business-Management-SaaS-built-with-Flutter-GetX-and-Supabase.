@@ -1,6 +1,8 @@
 /// Purpose: THE text field — consistent decoration + translated validation.
 /// Responsibilities: Wrap TextFormField; validators return KEYS, we .tr them here.
 /// Dependencies: flutter, get. Usage: AppTextField(label: 'auth.email'.tr, validator: Validators.email)
+library;
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

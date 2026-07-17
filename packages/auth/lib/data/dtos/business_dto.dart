@@ -11,6 +11,9 @@ class BusinessDto {
   static AuthBusiness fromMap(Map<String, dynamic> m) => AuthBusiness(
         id: m['id'] as String,
         name: (m['name'] as String?) ?? '',
+        ownerName: (m['owner_name'] as String?) ?? '',
+        email: (m['email'] as String?) ?? '',
+        country: (m['country'] as String?) ?? '',
         status: BusinessStatus.parse(m['status'] as String?),
         rejectionReason: m['rejection_reason'] as String?,
         resubmissionCount: (m['resubmission_count'] as int?) ?? 0,

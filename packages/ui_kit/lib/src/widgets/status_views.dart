@@ -2,6 +2,8 @@
 /// loading / error / empty / (success = the feature's own content).
 /// Responsibilities: One consistent look for each; errors always offer a retry.
 /// Dependencies: flutter, get. Usage: LoadingView(), ErrorView(onRetry: ...), EmptyView(...)
+library;
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

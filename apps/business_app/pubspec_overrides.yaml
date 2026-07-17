@@ -1,0 +1,12 @@
+# melos_managed_dependency_overrides: core,data,domain,localization,ui_kit
+dependency_overrides:
+  core:
+    path: ..\\..\\packages\\core
+  data:
+    path: ..\\..\\packages\\data
+  domain:
+    path: ..\\..\\packages\\domain
+  localization:
+    path: ..\\..\\packages\\localization
+  ui_kit:
+    path: ..\\..\\packages\\ui_kit

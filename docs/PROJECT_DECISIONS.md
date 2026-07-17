@@ -45,3 +45,6 @@ Every significant decision, its date, and its reason. When future-you asks "why 
 | D34 | 2026-07 | Shared packages/auth feature package (own domain/data/application) consumed by all 3 apps | Only structure satisfying "never duplicate authentication" across three apps |
 | D35 | 2026-07 | Device fingerprint = install-scoped random id in secure storage (not hardware IDs) | Privacy-safe; reinstall=new device=OTP again is correct security posture |
 | D36 | 2026-07 | PIN stored as salted SHA-256 in secure storage, constant-time verify; app gate not account credential | Never store secrets in plaintext; timing-safe comparison |
+| D37 | 2026-07 | Registration keeps FR-A1 six fields (owner email+password create the auth account before register_business) with a "same email" toggle | B.2's "only 4 fields" would make login impossible; deployed contract requires an authenticated caller |
+| D38 | 2026-07 | Resolver extended with pinConfigured/biometricAvailable + pinSetup destination | A trusted device with no unlock method must be routed to create one |
+| D39 | 2026-07 | AuthRouter is the app's single navigation decision point with a test seam (testHook) | UI never routes; controllers testable without a widget tree |

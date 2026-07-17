@@ -12,12 +12,16 @@ void main() {
     final b = BusinessDto.fromMap({
       'id': 'x',
       'name': 'Hanti Shop',
+      'owner_name': 'Cali',
+      'email': 'shop@x.so',
+      'country': 'Somalia',
       'status': 'rejected',
       'rejection_reason': 'Missing details',
       'resubmission_count': 2,
       'setup_completed': false,
     });
     expect(b.status, BusinessStatus.rejected);
+    expect(b.ownerName, 'Cali');
     expect(b.canResubmit, isTrue);
   });
 

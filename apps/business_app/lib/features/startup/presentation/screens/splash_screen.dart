@@ -1,7 +1,7 @@
-/// Purpose: First screen; shows the brand while startup decisions happen.
-/// Responsibilities: Wait a beat, then route onward. In M1 this becomes:
-/// logged-in? -> dashboard : login. For now it goes to the foundation check.
-/// Dependencies: get, core, app routes.
+/// Purpose: First screen shown while the app starts.
+/// Responsibilities: Display the brand briefly, then hand off to the
+/// authentication flow.
+/// Dependencies: Flutter, GetX, Core, AppRoutes.
 library;
 
 import 'package:core/core.dart';
@@ -12,6 +12,7 @@ import '../../../../app/routes/app_routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -20,9 +21,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+
     Future.delayed(AppDurations.splashMin, () {
-      // offAllNamed: replace the stack — you can't "back" into a splash.
-      Get.offAllNamed(AppRoutes.foundation);
+      // Replace the splash screen with the authentication entry point.
+      Get.offAllNamed(AppRoutes.login);
     });
   }
 
@@ -30,8 +32,10 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('app.name'.tr,
-            style: Theme.of(context).textTheme.headlineMedium),
+        child: Text(
+          'app.name'.tr,
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
       ),
     );
   }

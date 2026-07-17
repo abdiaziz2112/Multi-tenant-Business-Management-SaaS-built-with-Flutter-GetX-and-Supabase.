@@ -9,27 +9,37 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localizations:      # Material widget strings + RTL support for ar
-    sdk: flutter
-  get: ^4.6.6                 # state management + routing + DI (GetX ONLY rule)
-  get_storage: ^2.1.1         # tiny key-value store: persists theme & language
-  supabase_flutter: ^2.8.0    # backend client (used ONLY inside packages/)
 
-  # Shared packages — "path" means: use the code in this repo, not pub.dev.
+  flutter_localizations:
+    sdk: flutter
+
+  get: ^4.6.6
+  get_storage: ^2.1.1
+  supabase_flutter: ^2.8.0
+
+  # Shared workspace packages
   core:
     path: ../../packages/core
+
   domain:
     path: ../../packages/domain
+
   data:
     path: ../../packages/data
+
+  auth:
+    path: ../../packages/auth
+
   ui_kit:
     path: ../../packages/ui_kit
+
   localization:
     path: ../../packages/localization
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
   flutter_lints: ^4.0.0
 
 flutter:

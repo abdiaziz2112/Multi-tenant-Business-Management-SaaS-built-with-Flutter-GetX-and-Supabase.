@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:localization/localization.dart';
 import 'package:ui_kit/ui_kit.dart';
 
+import 'bindings/auth_binding.dart';
 import 'routes/app_pages.dart';
 import 'routes/app_routes.dart';
 
@@ -44,6 +45,7 @@ class App extends StatelessWidget {
       ],
 
       // ROUTING — every route declared in one place (app_pages.dart).
+      initialBinding: AuthBinding(),
       initialRoute: AppRoutes.splash,
       getPages: AppPages.pages,
     );

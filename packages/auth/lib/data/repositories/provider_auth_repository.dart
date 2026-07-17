@@ -48,6 +48,15 @@ class ProviderAuthRepository implements AuthRepository {
       _verify(email: email, code: code, type: OtpType.signup);
 
   @override
+  Future<void> resendSignupOtp(String email) async {
+    try {
+      await _auth.resend(type: OtpType.signup, email: email);
+    } catch (e) {
+      throw AuthFailureMapper.map(e);
+    }
+  }
+
+  @override
   Future<void> verifyLoginOtp({required String email, required String code}) =>
       _verify(email: email, code: code, type: OtpType.email);
 

@@ -11,6 +11,7 @@ enum AuthDestination {
   suspended,        // business suspended by platform
   setupWizard,      // approved but setup incomplete
   otpChallenge,     // approved+setup but THIS device is not trusted
+  pinSetup,         // trusted device with no unlock method configured yet
   unlock,           // trusted device: biometric / PIN gate
   dashboard,        // fully through
 }

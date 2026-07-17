@@ -1,6 +1,8 @@
 /// Purpose: THE button of the app — one look, one loading behavior, everywhere.
 /// Responsibilities: Filled button with built-in busy state (spinner + disabled).
 /// Dependencies: flutter. Usage: AppButton(label: 'common.save'.tr, onPressed: ..., busy: c.saving.value)
+library;
+
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {

@@ -1,4 +1,5 @@
 name: ui_kit
+publish_to: "none"  # internal monorepo package - path deps allowed
 description: Shared theme and reusable widgets for both apps.
 version: 0.1.0
 environment:

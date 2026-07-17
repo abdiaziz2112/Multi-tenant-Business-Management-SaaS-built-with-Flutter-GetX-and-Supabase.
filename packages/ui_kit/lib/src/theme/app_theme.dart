@@ -1,6 +1,8 @@
 /// Purpose: Build the light (default) and dark (optional) themes from one seed.
 /// Responsibilities: Material 3 ColorScheme + consistent component styling.
 /// Dependencies: flutter, AppColors. Usage: theme: AppTheme.light, darkTheme: AppTheme.dark
+library;
+
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
 

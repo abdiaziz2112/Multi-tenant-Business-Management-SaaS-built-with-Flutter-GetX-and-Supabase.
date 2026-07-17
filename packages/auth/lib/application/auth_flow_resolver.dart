@@ -17,6 +17,8 @@ class AuthFlowResolver {
     required bool emailVerified,
     required AuthBusiness? business,
     required bool deviceTrusted,
+    bool pinConfigured = false,
+    bool biometricAvailable = false,
   }) {
     if (!hasSession) return AuthDestination.login;
     if (!emailVerified) return AuthDestination.verifyEmail;
@@ -33,6 +35,10 @@ class AuthFlowResolver {
       case BusinessStatus.approved:
         if (!business.setupCompleted) return AuthDestination.setupWizard;
         if (!deviceTrusted) return AuthDestination.otpChallenge;
+        // Trusted device: something must be able to open the door.
+        if (!pinConfigured && !biometricAvailable) {
+          return AuthDestination.pinSetup;
+        }
         return AuthDestination.unlock;
     }
   }
