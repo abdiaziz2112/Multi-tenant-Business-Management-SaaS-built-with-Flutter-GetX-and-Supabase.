@@ -22,14 +22,28 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
+    debugPrint('=== SplashScreen.initState ===');
+    debugPrint('Splash delay: ${AppDurations.splashMin}');
+
     Future.delayed(AppDurations.splashMin, () {
-      // Replace the splash screen with the authentication entry point.
-      Get.offAllNamed(AppRoutes.login);
+      debugPrint('=== Splash delay finished ===');
+
+      try {
+        debugPrint('Navigating to: ${AppRoutes.login}');
+        Get.offAllNamed(AppRoutes.login);
+        debugPrint('Navigation request sent.');
+      } catch (e, st) {
+        debugPrint('SPLASH NAVIGATION ERROR');
+        debugPrint(e.toString());
+        debugPrint(st.toString());
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('=== SplashScreen.build ===');
+
     return Scaffold(
       body: Center(
         child: Text(
