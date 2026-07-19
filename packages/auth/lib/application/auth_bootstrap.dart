@@ -28,7 +28,8 @@ class AuthBootstrap {
   }) async {
     final hasSession = auth.currentUserId != null;
     final verified = hasSession && auth.isEmailVerified;
-    final biz = (hasSession && verified) ? await business.fetchOwnBusiness() : null;
+    final biz =
+        (hasSession && verified) ? await business.fetchOwnBusiness() : null;
 
     var trusted = false;
     final gateRelevant = biz != null &&

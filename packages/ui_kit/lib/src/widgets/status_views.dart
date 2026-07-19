@@ -17,14 +17,16 @@ class LoadingView extends StatelessWidget {
 class ErrorView extends StatelessWidget {
   final String messageKey;
   final VoidCallback? onRetry;
-  const ErrorView({super.key, this.messageKey = 'errors.unexpected', this.onRetry});
+  const ErrorView(
+      {super.key, this.messageKey = 'errors.unexpected', this.onRetry});
 
   @override
   Widget build(BuildContext context) {
     // An error explains what to do next — never just a sad message.
     return Center(
       child: Column(mainAxisSize: MainAxisSize.min, children: [
-        Icon(Icons.error_outline, size: 40, color: Theme.of(context).colorScheme.error),
+        Icon(Icons.error_outline,
+            size: 40, color: Theme.of(context).colorScheme.error),
         const SizedBox(height: 12),
         Text(messageKey.tr, textAlign: TextAlign.center),
         if (onRetry != null) ...[

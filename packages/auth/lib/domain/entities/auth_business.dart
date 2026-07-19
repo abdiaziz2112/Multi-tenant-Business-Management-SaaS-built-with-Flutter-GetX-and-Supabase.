@@ -9,9 +9,9 @@ import 'business_status.dart';
 class AuthBusiness {
   final String id;
   final String name;
-  final String ownerName;   // prefill for the resubmission form
-  final String email;       // prefill for the resubmission form
-  final String country;     // prefill for the resubmission form
+  final String ownerName; // prefill for the resubmission form
+  final String email; // prefill for the resubmission form
+  final String country; // prefill for the resubmission form
   final BusinessStatus status;
   final String? rejectionReason;
   final int resubmissionCount;

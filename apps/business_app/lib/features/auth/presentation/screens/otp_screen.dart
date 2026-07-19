@@ -42,8 +42,9 @@ class OtpScreen extends GetView<OtpController> {
                             color: Theme.of(context).colorScheme.error))),
                 const SizedBox(height: 16),
                 Obx(() => TextButton(
-                      onPressed:
-                          controller.cooldown.value == 0 ? controller.resend : null,
+                      onPressed: controller.cooldown.value == 0
+                          ? controller.resend
+                          : null,
                       child: Text(controller.cooldown.value == 0
                           ? 'auth.verify.resend'.tr
                           : 'auth.verify.resend_in'.trParams(

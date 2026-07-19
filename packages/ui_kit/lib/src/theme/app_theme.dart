@@ -21,9 +21,11 @@ class AppTheme {
       inputDecorationTheme: const InputDecorationTheme(
         border: OutlineInputBorder(),
         // Logical (start/end) padding, never left/right: flips correctly in RTL.
-        contentPadding: EdgeInsetsDirectional.symmetric(horizontal: 14, vertical: 12),
+        contentPadding:
+            EdgeInsetsDirectional.symmetric(horizontal: 14, vertical: 12),
       ),
-      snackBarTheme: const SnackBarThemeData(behavior: SnackBarBehavior.floating),
+      snackBarTheme:
+          const SnackBarThemeData(behavior: SnackBarBehavior.floating),
     );
   }
 

@@ -74,7 +74,9 @@ class PinSetupScreen extends GetView<UnlockController> {
   @override
   Widget build(BuildContext context) {
     String? pinValidator(String? v) =>
-        (v == null || v.length < 4 || v.length > 6) ? 'auth.pin_setup.pin' : null;
+        (v == null || v.length < 4 || v.length > 6)
+            ? 'auth.pin_setup.pin'
+            : null;
     return Scaffold(
       appBar: AppBar(title: Text('auth.pin_setup.title'.tr)),
       body: SafeArea(
@@ -85,7 +87,8 @@ class PinSetupScreen extends GetView<UnlockController> {
               constraints: const BoxConstraints(maxWidth: 360),
               child: Form(
                 key: controller.setupKey,
-                child: Column(crossAxisAlignment: CrossAxisAlignment.stretch,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text('auth.pin_setup.body'.tr),
                       const SizedBox(height: 16),
@@ -107,8 +110,7 @@ class PinSetupScreen extends GetView<UnlockController> {
                           ? const SizedBox.shrink()
                           : Text(controller.errorKey.value!.tr,
                               style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.error))),
+                                  color: Theme.of(context).colorScheme.error))),
                       const SizedBox(height: 16),
                       Obx(() => AppButton(
                             label: 'auth.pin_setup.button'.tr,

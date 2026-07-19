@@ -27,8 +27,7 @@ class LoginController extends GetxController {
     busy.value = true;
     errorKey.value = null;
     try {
-      await _auth.signIn(
-          email: email.text.trim(), password: password.text);
+      await _auth.signIn(email: email.text.trim(), password: password.text);
       await AuthRouter.resolveAndGo();
     } on Failure catch (f) {
       errorKey.value = f.messageKey;

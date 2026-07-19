@@ -10,10 +10,11 @@ abstract class AppRoutes {
   static const pending = '/pending';
   static const rejected = '/rejected';
   static const suspended = '/suspended';
-  static const setupRequired = '/setup-required';
+  static const setupWizard = '/setup-wizard';
   static const pinSetup = '/pin-setup';
   static const unlock = '/unlock';
   static const forgotPassword = '/forgot-password';
   static const resetPassword = '/reset-password';
+  static const devices = '/devices';
   static const home = '/home';
 }

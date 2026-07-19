@@ -15,7 +15,8 @@ class ProviderAuthRepository implements AuthRepository {
   GoTrueClient get _auth => SupabaseService.client.auth;
 
   @override
-  Future<String> signUp({required String email, required String password}) async {
+  Future<String> signUp(
+      {required String email, required String password}) async {
     try {
       final res = await _auth.signUp(email: email, password: password);
       return res.user!.id;
@@ -70,7 +71,8 @@ class ProviderAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<void> verifyRecoveryOtp({required String email, required String code}) =>
+  Future<void> verifyRecoveryOtp(
+          {required String email, required String code}) =>
       _verify(email: email, code: code, type: OtpType.recovery);
 
   Future<void> _verify({

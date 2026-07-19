@@ -9,7 +9,8 @@ import 'package:get/get.dart';
 class AppTextField extends StatelessWidget {
   final String label;
   final TextEditingController? controller;
-  final String? Function(String?)? validator; // returns a translation KEY or null
+  final String? Function(String?)?
+      validator; // returns a translation KEY or null
   final bool obscure;
   final TextInputType? keyboardType;
 

@@ -1,5 +1,7 @@
-# melos_managed_dependency_overrides: core,data,domain,localization,ui_kit
+# melos_managed_dependency_overrides: core,data,domain,localization,ui_kit,auth
 dependency_overrides:
+  auth:
+    path: ..\\..\\packages\\auth
   core:
     path: ..\\..\\packages\\core
   data:

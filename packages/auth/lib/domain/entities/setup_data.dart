@@ -3,11 +3,11 @@
 /// Dependencies: none.
 /// Usage: SetupData(...).toBusinessJson() / .toBranchJson()
 class SetupData {
-  final String phone;          // E.164
+  final String phone; // E.164
   final String businessType;
-  final String currency;       // ISO-4217
-  final String timezone;       // IANA
-  final String language;       // en | so | ar
+  final String currency; // ISO-4217
+  final String timezone; // IANA
+  final String language; // en | so | ar
   final String? address;
   final String? description;
   final String branchName;

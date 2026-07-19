@@ -8,6 +8,7 @@ library;
 
 import 'package:auth/auth.dart';
 import 'package:core/core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import '../routes/app_routes.dart';
@@ -25,7 +26,7 @@ class AuthRouter {
     AuthDestination.pending: AppRoutes.pending,
     AuthDestination.rejected: AppRoutes.rejected,
     AuthDestination.suspended: AppRoutes.suspended,
-    AuthDestination.setupWizard: AppRoutes.setupRequired, // B.3 swaps target
+    AuthDestination.setupWizard: AppRoutes.setupWizard,
     AuthDestination.otpChallenge: AppRoutes.otpChallenge,
     AuthDestination.pinSetup: AppRoutes.pinSetup,
     AuthDestination.unlock: AppRoutes.unlock,
@@ -75,6 +76,11 @@ class AuthRouter {
       destination = f.messageKey == 'auth.err.not_approved'
           ? AuthDestination.suspended
           : AuthDestination.login;
+    } catch (e, st) {
+      // ANY unexpected startup error: developer sees the truth, the user
+      // gets the login screen — never an eternal splash (CR-5 spirit).
+      debugPrint('AuthRouter unexpected: $e\n$st');
+      destination = AuthDestination.login;
     }
     await Get.offAllNamed<void>(_routeFor[destination]!);
   }

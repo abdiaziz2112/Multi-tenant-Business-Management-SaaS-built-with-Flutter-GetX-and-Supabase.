@@ -20,8 +20,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   try {
-    await GetStorage.init();       // 1. local key-value store (theme, locale)
-    await SupabaseService.init();  // 2. backend client (validates env first)
+    await GetStorage.init(); // 1. local key-value store (theme, locale)
+    await SupabaseService.init(); // 2. backend client (validates env first)
 
     // 3. App-lifetime services (permanent: true = never disposed).
     Get.put(ThemeService(), permanent: true);

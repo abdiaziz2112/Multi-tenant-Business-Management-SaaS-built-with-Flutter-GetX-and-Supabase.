@@ -11,8 +11,9 @@ class ThemeService extends GetxService {
   static ThemeService get to => Get.find();
   final _box = GetStorage();
 
-  ThemeMode get mode =>
-      (_box.read<String>('theme_mode') == 'dark') ? ThemeMode.dark : ThemeMode.light;
+  ThemeMode get mode => (_box.read<String>('theme_mode') == 'dark')
+      ? ThemeMode.dark
+      : ThemeMode.light;
 
   bool get isDark => mode == ThemeMode.dark;
 

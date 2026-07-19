@@ -16,8 +16,7 @@ class EnvConfig {
   static const String envName =
       String.fromEnvironment('ENV', defaultValue: 'dev');
 
-  static const String supabaseUrl =
-      String.fromEnvironment('SUPABASE_URL');
+  static const String supabaseUrl = String.fromEnvironment('SUPABASE_URL');
 
   static const String supabasePublishableKey =
       String.fromEnvironment('SUPABASE_PUBLISHABLE_KEY');
@@ -25,8 +24,7 @@ class EnvConfig {
   static bool get isProduction => envName == 'prod';
 
   static void validate() {
-    if (supabaseUrl.isEmpty ||
-        supabasePublishableKey.isEmpty) {
+    if (supabaseUrl.isEmpty || supabasePublishableKey.isEmpty) {
       throw StateError(
         'Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY.\n'
         'Run using:\n'

@@ -14,9 +14,12 @@ import '../../../../app/navigation/auth_router.dart';
 import '../../../../app/routes/app_routes.dart';
 
 class RegisterController extends GetxController {
-  RegisterController({AuthRepository? auth, BusinessRepository? businesses})
-      : _auth = auth ?? Get.find(),
+  RegisterController({
+    AuthRepository? auth,
+    BusinessRepository? businesses,
+  })  : _auth = auth ?? Get.find(),
         _businesses = businesses ?? Get.find();
+
   final AuthRepository _auth;
   final BusinessRepository _businesses;
 
@@ -27,6 +30,7 @@ class RegisterController extends GetxController {
   final country = TextEditingController();
   final ownerEmail = TextEditingController();
   final password = TextEditingController();
+
   final sameEmail = true.obs;
   final busy = false.obs;
   final errorKey = RxnString();
@@ -44,15 +48,22 @@ class RegisterController extends GetxController {
   Future<void> submitForTest() async {
     busy.value = true;
     errorKey.value = null;
+
     try {
-      await _auth.signUp(email: _loginEmail, password: password.text);
+      await _auth.signUp(
+        email: _loginEmail,
+        password: password.text,
+      );
+
       await _businesses.registerBusiness(
         businessName: businessName.text.trim(),
         businessEmail: businessEmail.text.trim(),
         country: country.text.trim(),
         ownerName: ownerName.text.trim(),
       );
-      // Unverified session -> resolver lands on verifyEmail (single decision point).
+
+      // Unverified session -> resolver lands on verifyEmail
+      // (single decision point).
       await AuthRouter.resolveAndGo();
     } on Failure catch (f) {
       errorKey.value = f.messageKey;
@@ -65,11 +76,17 @@ class RegisterController extends GetxController {
 
   @override
   void onClose() {
-    for (final c in [
-      businessName, ownerName, businessEmail, country, ownerEmail, password
+    for (final controller in [
+      businessName,
+      ownerName,
+      businessEmail,
+      country,
+      ownerEmail,
+      password,
     ]) {
-      c.dispose();
+      controller.dispose();
     }
+
     super.onClose();
   }
 }

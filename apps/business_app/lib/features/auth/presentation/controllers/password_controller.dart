@@ -38,8 +38,10 @@ class PasswordController extends GetxController {
 
   Future<void> sendCode() async {
     if (!(forgotKey.currentState?.validate() ?? false)) return;
+
     busy.value = true;
     errorKey.value = null;
+
     try {
       await _auth.sendPasswordResetOtp(email.text.trim());
       await Get.toNamed<void>(AppRoutes.resetPassword);
@@ -60,16 +62,26 @@ class PasswordController extends GetxController {
   Future<void> changePasswordForTest() async {
     busy.value = true;
     errorKey.value = null;
+
     try {
       await _auth.verifyRecoveryOtp(
-          email: email.text.trim(), code: code.text.trim());
+        email: email.text.trim(),
+        code: code.text.trim(),
+      );
+
       await _auth.updatePassword(newPassword.text);
+
       // FR-A18: current device survives, every other trusted device dies.
       final fp = await _getFingerprint();
       await _devices.revokeOtherDevices(fp);
+
       if (Get.context != null) {
-        Get.snackbar('auth.reset.title'.tr, 'auth.reset.devices_revoked'.tr);
+        Get.snackbar(
+          'auth.reset.title'.tr,
+          'auth.reset.devices_revoked'.tr,
+        );
       }
+
       await AuthRouter.resolveAndGo();
     } on Failure catch (f) {
       errorKey.value = f.messageKey;
@@ -80,9 +92,10 @@ class PasswordController extends GetxController {
 
   @override
   void onClose() {
-    for (final c in [email, code, newPassword]) {
-      c.dispose();
+    for (final controller in [email, code, newPassword]) {
+      controller.dispose();
     }
+
     super.onClose();
   }
 }

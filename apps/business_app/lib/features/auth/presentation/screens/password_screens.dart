@@ -24,7 +24,8 @@ class ForgotPasswordScreen extends GetView<PasswordController> {
               constraints: const BoxConstraints(maxWidth: 420),
               child: Form(
                 key: controller.forgotKey,
-                child: Column(crossAxisAlignment: CrossAxisAlignment.stretch,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text('auth.forgot.body'.tr),
                       const SizedBox(height: 16),
@@ -38,8 +39,7 @@ class ForgotPasswordScreen extends GetView<PasswordController> {
                           ? const SizedBox.shrink()
                           : Text(controller.errorKey.value!.tr,
                               style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.error))),
+                                  color: Theme.of(context).colorScheme.error))),
                       const SizedBox(height: 16),
                       Obx(() => AppButton(
                             label: 'auth.forgot.button'.tr,
@@ -71,7 +71,8 @@ class ResetPasswordScreen extends GetView<PasswordController> {
               constraints: const BoxConstraints(maxWidth: 420),
               child: Form(
                 key: controller.resetKey,
-                child: Column(crossAxisAlignment: CrossAxisAlignment.stretch,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       AppTextField(
                           label: 'auth.reset.code'.tr,
@@ -89,8 +90,7 @@ class ResetPasswordScreen extends GetView<PasswordController> {
                           ? const SizedBox.shrink()
                           : Text(controller.errorKey.value!.tr,
                               style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.error))),
+                                  color: Theme.of(context).colorScheme.error))),
                       const SizedBox(height: 16),
                       Obx(() => AppButton(
                             label: 'auth.reset.button'.tr,

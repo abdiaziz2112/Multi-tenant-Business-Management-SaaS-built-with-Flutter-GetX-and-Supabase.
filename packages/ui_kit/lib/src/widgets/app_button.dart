@@ -8,9 +8,11 @@ import 'package:flutter/material.dart';
 class AppButton extends StatelessWidget {
   final String label;
   final VoidCallback? onPressed;
-  final bool busy; // while true: disabled + spinner. Prevents double-taps (double sales!).
+  final bool
+      busy; // while true: disabled + spinner. Prevents double-taps (double sales!).
 
-  const AppButton({super.key, required this.label, this.onPressed, this.busy = false});
+  const AppButton(
+      {super.key, required this.label, this.onPressed, this.busy = false});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,9 @@ class AppButton extends StatelessWidget {
       onPressed: busy ? null : onPressed,
       child: busy
           ? const SizedBox(
-              height: 18, width: 18, child: CircularProgressIndicator(strokeWidth: 2))
+              height: 18,
+              width: 18,
+              child: CircularProgressIndicator(strokeWidth: 2))
           : Text(label),
     );
   }

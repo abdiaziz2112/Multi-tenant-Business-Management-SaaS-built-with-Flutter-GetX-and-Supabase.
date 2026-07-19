@@ -1,5 +1,4 @@
-/// Purpose: Widget-level proof that StatusScreen renders localized content
-/// and actions inside a translated GetMaterialApp.
+/// Purpose: Widget-level proof that StatusScreen renders localized content.
 library;
 
 import 'package:flutter/material.dart';
@@ -17,7 +16,7 @@ void main() {
         translations: AppTranslations(),
         locale: const Locale('en'),
         home: Builder(
-          builder: (context) => StatusScreen(
+          builder: (_) => StatusScreen(
             icon: Icons.hourglass_top_rounded,
             title: 'auth.pending.title'.tr,
             body: 'auth.pending.body'.tr,
@@ -32,13 +31,10 @@ void main() {
       ),
     );
 
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     expect(find.text('Waiting for approval'), findsOneWidget);
-    expect(
-      find.textContaining('reviewed by Hanti ERP'),
-      findsOneWidget,
-    );
+    expect(find.textContaining('reviewed by Hanti ERP'), findsOneWidget);
 
     await tester.tap(find.text('Check status'));
     await tester.pump();

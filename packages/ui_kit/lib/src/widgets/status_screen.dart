@@ -13,7 +13,7 @@ class StatusScreen extends StatelessWidget {
   final String title;
   final String body;
   final List<Widget> actions;
-  final Widget? extra; // optional slot (e.g. resubmission form)
+  final Widget? extra;
 
   const StatusScreen({
     super.key,
@@ -34,25 +34,40 @@ class StatusScreen extends StatelessWidget {
             padding: const EdgeInsetsDirectional.all(24),
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 480),
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Icon(icon, size: 56, color: iconColor),
-                const SizedBox(height: 16),
-                Text(title,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(icon, size: 56, color: iconColor),
+                  const SizedBox(height: 16),
+                  Text(
+                    title,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineSmall),
-                const SizedBox(height: 12),
-                Text(body,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    body,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyLarge),
-                if (extra != null) ...[const SizedBox(height: 24), extra!],
-                if (actions.isNotEmpty) ...[
-                  const SizedBox(height: 24),
-                  ...actions.map((a) => Padding(
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  if (extra != null) ...[
+                    const SizedBox(height: 24),
+                    extra!,
+                  ],
+                  if (actions.isNotEmpty) ...[
+                    const SizedBox(height: 24),
+                    ...actions.map(
+                      (a) => Padding(
                         padding: const EdgeInsetsDirectional.only(bottom: 8),
-                        child: SizedBox(width: double.infinity, child: a),
-                      )),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: a,
+                        ),
+                      ),
+                    ),
+                  ],
                 ],
-              ]),
+              ),
             ),
           ),
         ),

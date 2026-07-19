@@ -6,7 +6,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Failure implements Exception {
   final String messageKey; // translation key, safe to show after .tr
-  final Object? cause;     // original exception, for logs only — never shown
+  final Object? cause; // original exception, for logs only — never shown
   const Failure(this.messageKey, [this.cause]);
 
   /// Maps low-level exceptions to translation keys. Grows with features.

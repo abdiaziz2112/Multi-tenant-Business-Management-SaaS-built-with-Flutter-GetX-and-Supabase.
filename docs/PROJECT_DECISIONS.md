@@ -48,3 +48,6 @@ Every significant decision, its date, and its reason. When future-you asks "why 
 | D37 | 2026-07 | Registration keeps FR-A1 six fields (owner email+password create the auth account before register_business) with a "same email" toggle | B.2's "only 4 fields" would make login impossible; deployed contract requires an authenticated caller |
 | D38 | 2026-07 | Resolver extended with pinConfigured/biometricAvailable + pinSetup destination | A trusted device with no unlock method must be routed to create one |
 | D39 | 2026-07 | AuthRouter is the app's single navigation decision point with a test seam (testHook) | UI never routes; controllers testable without a widget tree |
+| D40 | 2026-07 | Logo upload deferred from wizard (B directive's wizard field list omits it) to settings/portal gate | Avoids image-picker + storage scope now; storage policies already deployed |
+| D41 | 2026-07 | Wizard drafts persist locally (GetStorage) only; DB setup_completed remains sole truth | Resumability without inventing server draft state |
+| D42 | 2026-07 | EVERY successful OTP (incl. signup) trusts the current device | AUTH-007 plain text; removes a redundant second OTP right after registration |

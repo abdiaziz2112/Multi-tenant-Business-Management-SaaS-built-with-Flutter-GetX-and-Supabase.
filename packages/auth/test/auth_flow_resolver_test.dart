@@ -58,30 +58,36 @@ void main() {
         r(business: _biz(BusinessStatus.suspended)), AuthDestination.suspended);
   });
   test('UNKNOWN status fails closed -> suspended', () {
-    expect(r(business: _biz(BusinessStatus.unknown)), AuthDestination.suspended);
+    expect(
+        r(business: _biz(BusinessStatus.unknown)), AuthDestination.suspended);
   });
   test('approved without setup -> wizard', () {
-    expect(
-        r(business: _biz(BusinessStatus.approved)), AuthDestination.setupWizard);
+    expect(r(business: _biz(BusinessStatus.approved)),
+        AuthDestination.setupWizard);
   });
   test('approved+setup, untrusted device -> otpChallenge', () {
     expect(r(business: _biz(BusinessStatus.approved, setup: true)),
         AuthDestination.otpChallenge);
   });
   test('trusted device, NO pin, NO biometrics -> pinSetup', () {
-    expect(r(business: _biz(BusinessStatus.approved, setup: true), trusted: true),
+    expect(
+        r(business: _biz(BusinessStatus.approved, setup: true), trusted: true),
         AuthDestination.pinSetup);
   });
   test('trusted device with pin -> unlock', () {
     expect(
-        r(business: _biz(BusinessStatus.approved, setup: true),
-            trusted: true, pin: true),
+        r(
+            business: _biz(BusinessStatus.approved, setup: true),
+            trusted: true,
+            pin: true),
         AuthDestination.unlock);
   });
   test('trusted device with biometrics only -> unlock', () {
     expect(
-        r(business: _biz(BusinessStatus.approved, setup: true),
-            trusted: true, bio: true),
+        r(
+            business: _biz(BusinessStatus.approved, setup: true),
+            trusted: true,
+            bio: true),
         AuthDestination.unlock);
   });
 }

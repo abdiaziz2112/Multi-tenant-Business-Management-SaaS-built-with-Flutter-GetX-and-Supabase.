@@ -57,7 +57,8 @@ class ProviderBusinessRepository implements BusinessRepository {
     try {
       final rows = await SupabaseService.client
           .from('businesses')
-          .select('id, name, owner_name, email, country, status, rejection_reason, resubmission_count, setup_completed')
+          .select(
+              'id, name, owner_name, email, country, status, rejection_reason, resubmission_count, setup_completed')
           .limit(1);
       if (rows.isEmpty) return null;
       return BusinessDto.fromMap(rows.first);

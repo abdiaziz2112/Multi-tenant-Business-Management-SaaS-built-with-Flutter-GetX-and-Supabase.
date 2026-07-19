@@ -12,7 +12,8 @@ class FakeAuthRepository implements AuthRepository {
   Object? throwOnSignIn;
 
   @override
-  Future<String> signUp({required String email, required String password}) async {
+  Future<String> signUp(
+      {required String email, required String password}) async {
     calls.add('signUp:$email');
     return 'u1';
   }
@@ -59,6 +60,7 @@ class FakeAuthRepository implements AuthRepository {
 class FakeBusinessRepository implements BusinessRepository {
   final calls = <String>[];
   AuthBusiness? business;
+  SetupData? lastSetup;
 
   @override
   Future<String> registerBusiness({
@@ -87,12 +89,16 @@ class FakeBusinessRepository implements BusinessRepository {
   }
 
   @override
-  Future<void> completeSetup(SetupData data) async => calls.add('completeSetup');
+  Future<void> completeSetup(SetupData data) async {
+    calls.add('completeSetup');
+    lastSetup = data;
+  }
 }
 
 class FakeDeviceRepository implements DeviceRepository {
   final calls = <String>[];
   bool trusted = false;
+  List<TrustedDevice> devices = [];
 
   @override
   Future<bool> isDeviceTrusted(String fingerprint) async {
@@ -115,14 +121,18 @@ class FakeDeviceRepository implements DeviceRepository {
   Future<void> touchDevice(String fingerprint) async =>
       calls.add('touch:$fingerprint');
   @override
-  Future<List<TrustedDevice>> listDevices() async => [];
+  Future<List<TrustedDevice>> listDevices() async {
+    calls.add('list');
+    return devices;
+  }
+
   @override
   Future<void> revokeDevice(String deviceId) async =>
       calls.add('revokeOne:$deviceId');
   @override
   Future<int> revokeAllDevices() async {
     calls.add('revokeAll');
-    return 1;
+    return devices.length;
   }
 
   @override

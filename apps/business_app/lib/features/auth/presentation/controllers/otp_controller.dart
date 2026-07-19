@@ -67,13 +67,16 @@ class OtpController extends GetxController {
         await _auth.verifySignupOtp(email: email, code: code);
       } else {
         await _auth.verifyLoginOtp(email: email, code: code);
-        final fp = await _getFingerprint();
-        await _devices.trustDevice(
-          fingerprint: fp,
-          name: await _getDeviceName(),
-          platform: _platformLabel,
-        );
       }
+      // AUTH-007: "after successful OTP verification, the current device
+      // becomes Trusted" — for EVERY OTP type (D42). This also spares a
+      // brand-new user a redundant second OTP right after registration.
+      final fp = await _getFingerprint();
+      await _devices.trustDevice(
+        fingerprint: fp,
+        name: await _getDeviceName(),
+        platform: _platformLabel,
+      );
       await AuthRouter.resolveAndGo();
     } on Failure catch (f) {
       errorKey.value = f.messageKey;

@@ -1,14 +1,23 @@
 /// Purpose: Input validation shared by both apps (single source of truth).
-/// Responsibilities: Email + strong-password rules matching docs/SECURITY.md.
+/// Responsibilities: Email, strong-password and E.164 phone rules
+/// (docs/SECURITY.md + wizard contract in migration 00012).
 /// Dependencies: none.
 /// Usage: Validators.password(value) -> null when valid, message key when not.
+library;
+
 class Validators {
   Validators._();
 
   static final _email = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
+  static final _phone = RegExp(r'^\+[1-9]\d{7,14}$'); // E.164: +2526...
 
   static String? email(String? v) =>
       (v == null || !_email.hasMatch(v.trim())) ? 'validation.email' : null;
+
+  /// E.164 international format — one canonical shape makes search and
+  /// (future) WhatsApp/SMS integrations reliable.
+  static String? phone(String? v) =>
+      (v == null || !_phone.hasMatch(v.trim())) ? 'validation.phone' : null;
 
   /// Policy (approved): >=8 chars, upper, lower, digit, special.
   /// The SAME policy is enforced server-side; this copy is instant feedback.
@@ -18,7 +27,8 @@ class Validators {
     if (!s.contains(RegExp(r'[A-Z]'))) return 'validation.password_upper';
     if (!s.contains(RegExp(r'[a-z]'))) return 'validation.password_lower';
     if (!s.contains(RegExp(r'[0-9]'))) return 'validation.password_digit';
-    if (!s.contains(RegExp(r'[^A-Za-z0-9]'))) return 'validation.password_special';
+    if (!s.contains(RegExp(r'[^A-Za-z0-9]')))
+      return 'validation.password_special';
     return null;
   }
 

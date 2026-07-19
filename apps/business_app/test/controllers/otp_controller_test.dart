@@ -8,8 +8,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../fakes/fake_repositories.dart';
 
-OtpController _make(OtpMode mode, FakeAuthRepository auth,
-        FakeDeviceRepository devices) =>
+OtpController _make(
+        OtpMode mode, FakeAuthRepository auth, FakeDeviceRepository devices) =>
     OtpController(
       mode: mode,
       auth: auth,
@@ -37,7 +37,9 @@ void main() {
     AuthRouter.testHook = null;
   });
 
-  test('signup mode: verifySignupOtp only, no device calls', () async {
+  test(
+      'signup mode: verifySignupOtp then trust_device (D42: AUTH-007 applies to every OTP)',
+      () async {
     final auth = FakeAuthRepository();
     final devices = FakeDeviceRepository();
     AuthRouter.testHook = () async {};
@@ -46,7 +48,7 @@ void main() {
     await c.verify('111111');
 
     expect(auth.calls, contains('verifySignup:111111'));
-    expect(devices.calls, isEmpty);
+    expect(devices.calls, contains('trust:fp-test'));
     c.onClose();
     AuthRouter.testHook = null;
   });

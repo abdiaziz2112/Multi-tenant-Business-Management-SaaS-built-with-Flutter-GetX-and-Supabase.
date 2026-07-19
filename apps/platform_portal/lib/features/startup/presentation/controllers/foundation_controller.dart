@@ -26,8 +26,7 @@ class FoundationController extends GetxController {
           .from('subscription_plans')
           .select('name')
           .order('price_monthly');
-      planNames.assignAll(
-          (rows as List).map((r) => r['name'] as String));
+      planNames.assignAll((rows as List).map((r) => r['name'] as String));
       ping.value = PingStatus.ok;
     } catch (_) {
       ping.value = PingStatus.fail;
